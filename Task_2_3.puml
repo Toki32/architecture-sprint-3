@@ -1,0 +1,21 @@
+@startuml
+title Диаграмма уровня кода
+
+top to bottom direction
+
+class ChangeTemperatureRequest {}
+
+class AuthMiddleware {}
+
+class HeatingSystemController {}
+
+class HeatingSystemRepository {}
+
+class HeatingSystemTemperatureChangeRequestsQueue {}
+
+ChangeTemperatureRequest --> AuthMiddleware : авторизация
+AuthMiddleware --> HeatingSystemController : отправка запроса после прохождения авторизации
+HeatingSystemController --> HeatingSystemRepository : сохранение данных о температуре в БД
+HeatingSystemController --> HeatingSystemTemperatureChangeRequestsQueue : отправка запрошенных данных о температуре в систему
+
+@enduml
